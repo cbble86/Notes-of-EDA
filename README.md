@@ -1,2 +1,2 @@
 # Notes-of-EDA
-Some about FPGA and Verilog
+Something about FPGA and Verilog
