@@ -1,0 +1,32 @@
+module bcd_counter(cin_t, clk_100, cout_t, q_t);
+
+		input cin_t;					//输入进位
+		input clk_100;					//时钟
+		output cout_t;					//输出进位
+		output [11:0] q_t;			//3位bcd(12bit)
+		
+		wire link_0to1;				//连接0号和1号四位计数器
+		wire link_1to2;				//连接1号和2号四位计数器
+		
+		counter counter0(
+			.cin(cin_t),
+			.clock(clk_100),
+			.cout(link_0to1),
+			.q(q_t[3:0])
+			);
+			
+		counter counter1(
+			.cin(link_0to1),
+			.clock(clk_100),
+			.cout(link_1to2),
+			.q(q_t[7:4])
+			);
+	
+		counter counter2(
+			.cin(link_1to2),
+			.clock(clk_100),
+			.cout(cout_t),
+			.q(q_t[11:8])
+			);	
+			
+endmodule
